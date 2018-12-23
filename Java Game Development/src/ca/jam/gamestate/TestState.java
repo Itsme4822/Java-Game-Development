@@ -33,9 +33,7 @@ public class TestState extends GameState {
 		 * This is where game logic goes. Every update/tick that happens in the game,
 		 * this function is run. There are 60 ticks per second.
 		 */
-		object.tick(); 
-		//Michael is trolling
-		//Sorry Michael
+		object.tick();
 	}
 
 	@Override
