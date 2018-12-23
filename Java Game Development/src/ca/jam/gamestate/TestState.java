@@ -34,6 +34,7 @@ public class TestState extends GameState {
 		 * this function is run. There are 60 ticks per second.
 		 */
 		object.tick();
+		//Michael is too good at maplestory
 	}
 
 	@Override
