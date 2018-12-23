@@ -39,7 +39,7 @@ public class TestObject extends GameObject{
 		if (y + height > Game.HEIGHT * Game.SCALE) {
 			y = Game.HEIGHT * Game.SCALE - height;
 		}
-		
+		//Michael sucks
 		
 	}
 
