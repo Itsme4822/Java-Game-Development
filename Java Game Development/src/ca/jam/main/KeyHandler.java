@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 public class KeyHandler extends KeyAdapter{
 	// Number of keyboard controls in the game. Should change if we add more keys or just make it to 101 (number keys on keyboard)
-	public static int NUM_KEYS = 4;
+	public static int NUM_KEYS = 5;
 	// Array tracks which keys are pressed
 	private static boolean keysPressed[] = new boolean[NUM_KEYS];
 	
@@ -14,6 +14,7 @@ public class KeyHandler extends KeyAdapter{
 	public static final int DOWN = 1;
 	public static final int LEFT = 2;
 	public static final int RIGHT = 3;
+	public static final int SPACE = 4;
 	
 	public void keyPressed(KeyEvent e) {
 		/*
@@ -27,6 +28,7 @@ public class KeyHandler extends KeyAdapter{
 		if (key == KeyEvent.VK_DOWN) keysPressed[DOWN] = true;
 		if (key == KeyEvent.VK_LEFT) keysPressed[LEFT] = true;
 		if (key == KeyEvent.VK_RIGHT) keysPressed[RIGHT] = true;
+		if (key == KeyEvent.VK_SPACE) keysPressed[SPACE] = true;
 		
 	}
 	
@@ -42,6 +44,7 @@ public class KeyHandler extends KeyAdapter{
 		if (key == KeyEvent.VK_DOWN) keysPressed[DOWN] = false;
 		if (key == KeyEvent.VK_LEFT) keysPressed[LEFT] = false;
 		if (key == KeyEvent.VK_RIGHT) keysPressed[RIGHT] = false;
+		if (key == KeyEvent.VK_SPACE) keysPressed[SPACE] = false;
 		
 	}
 	
