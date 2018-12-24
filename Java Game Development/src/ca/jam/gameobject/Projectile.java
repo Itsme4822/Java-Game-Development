@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Projectile extends GameObject	{
-	
+	/*TODO:
+	 * Fix the graivty. Its falling too fast
+	 */
 	private final double GRAVITY = 0.5;
 	private double drag;
 	
