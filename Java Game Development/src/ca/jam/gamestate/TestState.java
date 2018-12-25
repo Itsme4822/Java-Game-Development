@@ -3,9 +3,7 @@ package ca.jam.gamestate;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import ca.jam.gameobject.ObjectHandler;
-import ca.jam.gameobject.Projectile;
-import ca.jam.gameobject.TestObject;
+import ca.jam.gameobject.*;
 import ca.jam.main.Game;
 import ca.jam.main.KeyHandler;
 
@@ -14,7 +12,6 @@ public class TestState extends GameState {
 	 * Declare variables and objects here.
 	 */
 	private TestObject object;
-	private ObjectHandler projectiles;
 
 	public TestState(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -26,7 +23,6 @@ public class TestState extends GameState {
 		 * Define variables and objects here
 		 */
 		object = new TestObject(100, 100);
-		projectiles = new ObjectHandler();
 	}
 
 	@Override
@@ -36,7 +32,6 @@ public class TestState extends GameState {
 		 * this function is run. There are 60 ticks per second.
 		 */
 		object.tick();
-		projectiles.tick();
 	}
 
 	@Override
@@ -49,7 +44,6 @@ public class TestState extends GameState {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
 		object.render(g);
-		projectiles.render(g);
 	}
 
 	@Override
@@ -74,10 +68,6 @@ public class TestState extends GameState {
 			object.setVelX(5);
 		} else {
 			object.setVelX(0);
-		}
-		
-		if (KeyHandler.isPressed(KeyHandler.SPACE)) {
-			projectiles.addObject(new Projectile(30, 100, 32, 32, object));
 		}
 	}
 
