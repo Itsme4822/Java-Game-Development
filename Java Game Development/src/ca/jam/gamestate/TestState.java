@@ -11,7 +11,7 @@ public class TestState extends GameState {
 	/*
 	 * Declare variables and objects here.
 	 */
-	private TestObject object;
+	private Player player;
 
 	public TestState(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -22,7 +22,7 @@ public class TestState extends GameState {
 		/*
 		 * Define variables and objects here
 		 */
-		object = new TestObject(100, 100);
+		player = new Player(100, 100);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class TestState extends GameState {
 		 * This is where game logic goes. Every update/tick that happens in the game,
 		 * this function is run. There are 60 ticks per second.
 		 */
-		object.tick();
+		player.tick();
 	}
 
 	@Override
@@ -42,32 +42,30 @@ public class TestState extends GameState {
 		 * after.
 		 */
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE);
-		object.render(g);
+		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+		player.render(g);
 	}
 
 	@Override
 	public void keyInput() {
 		/*
-		 * This is where we handle keyboard input. Example of how to use this: if
-		 * (KeyHandler.isPressed(key)) { ... }
+		 * This is where we handle keyboard input. Example of how to use this: 
+		 * if (KeyHandler.isPressed(key)) { ... }
 		 */
-		if (KeyHandler.isPressed(KeyHandler.UP)) {
-			object.setVelY(-5);
-		} else if (KeyHandler.isPressed(KeyHandler.DOWN)) {
-			object.setVelY(5);
-		} else {
-			object.setVelY(0);
-		}
-
 		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
-			object.setVelX(-5);
-		}
-
-		else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
-			object.setVelX(5);
+			player.setVelX(-6);
+		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
+			player.setVelX(6);
 		} else {
-			object.setVelX(0);
+			player.setVelX(0);
+		}
+		
+		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
+			player.setVelY(-8);
+			player.setGrounded(false);
+		}
+		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
+			player.setVelY(5);
 		}
 	}
 

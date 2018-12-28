@@ -28,16 +28,16 @@ public class TestObject extends GameObject{
 			x = 0;
 		}
 		
-		if (x + width > Game.WIDTH * Game.SCALE) {
-			x = Game.WIDTH * Game.SCALE - width;
+		if (x + width > Game.WIDTH) {
+			x = Game.WIDTH - width;
 		}
 		
 		if (y < 0) {
 			y = 0;
 		}
 		
-		if (y + height > Game.HEIGHT * Game.SCALE) {
-			y = Game.HEIGHT * Game.SCALE - height;
+		if (y + height > Game.HEIGHT) {
+			y = Game.HEIGHT - height;
 		}
 	}
 

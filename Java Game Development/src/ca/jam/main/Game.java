@@ -22,9 +22,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private static final long serialVersionUID = 1L;
 
 	// Variables for the window
-	public static final int WIDTH = 400;
-	public static final int HEIGHT = 300;
-	public static final int SCALE = 2;
+	public static final int WIDTH = 1024;
+	public static final int HEIGHT = WIDTH / 16 * 9;
 	public static final String TITLE = "Java Game";
 	public static int FPS;
 
@@ -36,7 +35,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private GameStateManager gsm;
 
 	public Game() {
-		new GameWindow(WIDTH, HEIGHT, SCALE, TITLE, this);
+		new GameWindow(WIDTH, HEIGHT, TITLE, this);
 	}
 
 	public void init() {
