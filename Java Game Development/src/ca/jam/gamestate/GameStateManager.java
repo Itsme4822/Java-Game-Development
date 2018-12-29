@@ -13,21 +13,24 @@ public class GameStateManager {
 	private int currentState; // ID of the current gamestate
 	
 	// How many gamestates there are in the game. Must change when you add new states.
-	public static final int NUMGAMESTATES = 1; 
+	public static final int NUMGAMESTATES = 2; 
 	
 	//GAMESTATE IDs. These IDs must be unique.
 	public final int TESTSTATE = 0;
+	public final int LEVEL2 = 1;
 	
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new GameState[NUMGAMESTATES];
-		currentState = TESTSTATE;
+		currentState = LEVEL2;
 		setState(currentState);
 	}
 	
 	private void loadState(int state) { // Loads all the states in the game
 		if (state == TESTSTATE) {
 			gameStates[state] = new TestState(game, this);
+		}else if(state == LEVEL2){
+			gameStates[state] = new Level2(game, this);
 		}
 	}
 

@@ -17,7 +17,7 @@ public class Floor extends GameObject{
 		// TODO Auto-generated method stub
 		
 	}
-
+	//hi
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub

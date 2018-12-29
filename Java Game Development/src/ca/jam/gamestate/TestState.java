@@ -13,6 +13,8 @@ public class TestState extends GameState {
 	 */
 	private Player player;
 	private Floor floor;
+	private Floor floor2;
+	private Floor floor3;
 
 	public TestState(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -24,8 +26,11 @@ public class TestState extends GameState {
 		 * Define variables and objects here
 		 */
 		player = new Player(100, 100);
-		floor = new Floor(0, 500, 1080, 50);
+		floor = new Floor(155, 450, 700, 25);
+		floor2 = new Floor(315, 350, 350, 15);
+		floor3 = new Floor(425, 250, 125, 5);
 	}
+	
 
 	@Override
 	public void tick() {
@@ -47,6 +52,8 @@ public class TestState extends GameState {
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		player.render(g);
 		floor.render(g);
+		floor2.render(g);
+		floor3.render(g);
 	}
 
 	@Override
