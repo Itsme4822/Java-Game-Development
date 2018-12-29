@@ -5,16 +5,18 @@ import java.awt.Graphics2D;
 
 public class Floor extends GameObject{
 
-	public Floor(float x, float y, int width, int height) {
+	private Player player;
+	
+	public Floor(float x, float y, int width, int height, Player player) {
 		super(x, y);
 		this.width = width;
 		this.height = height;
-		// TODO Auto-generated constructor stub
+		this.player = player;
 	}
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
+		collisionWithPlayer(player);
 		
 	}
 	//hi
@@ -25,6 +27,17 @@ public class Floor extends GameObject{
 		g.fillRect((int) x, (int) y, width, height);
 	}
 	
+	public void collisionWithPlayer(Player player) {
+		//Player lands ontop of the floor
+		if (player.getX() >= x && player.getX() + player.getWidth() <= x + width && player.getVelY() > 0) {
+			if (player.getY() + player.getHeight() >= y ) {
+				player.setY(y - player.getHeight() - player.getVelY());
+				player.setGrounded(true);
+			} else {
+				player.setGrounded(false);
+			}
+		}
+	}
 	
 	
 }

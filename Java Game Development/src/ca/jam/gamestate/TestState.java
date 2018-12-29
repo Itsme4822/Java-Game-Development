@@ -26,9 +26,9 @@ public class TestState extends GameState {
 		 * Define variables and objects here
 		 */
 		player = new Player(100, 100);
-		floor = new Floor(155, 450, 700, 25);
-		floor2 = new Floor(315, 350, 350, 15);
-		floor3 = new Floor(425, 250, 125, 5);
+		floor = new Floor(155, 450, 700, 25, player);
+		floor2 = new Floor(315, 350, 350, 15, player);
+		floor3 = new Floor(425, 250, 125, 5, player);
 	}
 	//hi
 
@@ -39,6 +39,9 @@ public class TestState extends GameState {
 		 * this function is run. There are 60 ticks per second.
 		 */
 		player.tick();
+		floor.tick();
+		floor2.tick();
+		floor3.tick();
 	}
 
 	@Override
