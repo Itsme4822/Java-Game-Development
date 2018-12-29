@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import ca.jam.gameobject.Floor;
 import ca.jam.gameobject.Player;
 import ca.jam.main.Game;
+import ca.jam.main.KeyHandler;
 
 public class Level2 extends GameState{
 
@@ -49,8 +50,25 @@ public class Level2 extends GameState{
 	//comment
 	@Override
 	public void keyInput() {
-		// TODO Auto-generated method stub
+		/*
+		 * This is where we handle keyboard input. Example of how to use this: 
+		 * if (KeyHandler.isPressed(key)) { ... }
+		 */
+		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
+			player.setVelX(-6);
+		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
+			player.setVelX(6);
+		} else {
+			player.setVelX(0);
+		}
 		
+		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
+			player.setVelY(-8);
+			player.setGrounded(false);
+		}
+		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
+			player.setVelY(5);
+		}
 	}
 
 }
