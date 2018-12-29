@@ -12,6 +12,7 @@ public class TestState extends GameState {
 	 * Declare variables and objects here.
 	 */
 	private Player player;
+	private Floor floor;
 
 	public TestState(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -23,6 +24,7 @@ public class TestState extends GameState {
 		 * Define variables and objects here
 		 */
 		player = new Player(100, 100);
+		floor = new Floor(0, 500, 1080, 50);
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class TestState extends GameState {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		player.render(g);
+		floor.render(g);
 	}
 
 	@Override
