@@ -1,6 +1,7 @@
 package ca.jam.gamestate;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import ca.jam.gameobject.Floor;
 import ca.jam.gameobject.Player;
@@ -14,7 +15,7 @@ public class Level2 extends GameState{
 	private Floor floor2;
 	private Floor floor3;
 	private Floor floor4;
-	
+	private BufferedImage background;
 	
 	public Level2(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -28,6 +29,7 @@ public class Level2 extends GameState{
 		floor = new Floor(225, 350, 550, 45, player);
 		floor2 = new Floor(145, 190, 150, 15, player);
 		floor3 = new Floor(750, 270, 100, 15, player);
+		background = Game.IMAGELOADER.loadImage("/Java Game Development/res/Backgrounds/Back1.png");
 	}
 
 	@Override

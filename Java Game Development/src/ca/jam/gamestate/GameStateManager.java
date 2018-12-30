@@ -18,7 +18,7 @@ public class GameStateManager {
 	//GAMESTATE IDs. These IDs must be unique.
 	public final int TESTSTATE = 0;
 	public final int LEVEL2 = 1;
-	
+	//hello
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new GameState[NUMGAMESTATES];
