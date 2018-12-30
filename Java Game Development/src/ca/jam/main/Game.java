@@ -12,6 +12,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import ca.jam.gamestate.GameStateManager;
+import ca.jam.gfx.BufferedImageLoader;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 
@@ -30,6 +31,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private BufferedImage image  = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 	
 	// Variables for the game
+	public static final BufferedImageLoader IMAGELOADER = new BufferedImageLoader();
 	private boolean running = false;
 	private Thread game;
 	private GameStateManager gsm;
