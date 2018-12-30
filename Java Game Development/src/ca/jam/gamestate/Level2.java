@@ -29,7 +29,7 @@ public class Level2 extends GameState{
 		floor = new Floor(225, 350, 550, 45, player);
 		floor2 = new Floor(145, 190, 150, 15, player);
 		floor3 = new Floor(750, 270, 100, 15, player);
-		background = Game.IMAGELOADER.loadImage("/Java Game Development/res/Backgrounds/Back1.png");
+		background = Game.IMAGELOADER.loadImage("/Backgrounds/Back1.png");
 	}
 
 	@Override
@@ -44,6 +44,7 @@ public class Level2 extends GameState{
 	@Override
 	public void render(Graphics2D g) {
 		// TODO Auto-generated method stub
+		g.drawImage(background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		player.render(g);
 		floor.render(g);
 		floor2.render(g);
