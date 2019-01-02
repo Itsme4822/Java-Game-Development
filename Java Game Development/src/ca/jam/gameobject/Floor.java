@@ -2,6 +2,7 @@ package ca.jam.gameobject;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 public class Floor extends GameObject {
 
@@ -12,11 +13,11 @@ public class Floor extends GameObject {
 		this.width = width;
 		this.height = height;
 		this.player = player;
+		id = ObjectId.floor;
 	}
 
 	@Override
 	public void tick() {
-		collisionWithPlayer(player);
 
 	}
 
@@ -28,20 +29,8 @@ public class Floor extends GameObject {
 		g.fillRect((int) x, (int) y, width, height);
 	}
 
-	public void collisionWithPlayer(Player player) {
-		// Possibly above or below the floor
-		if (player.getX() + player.getWidth() >= x && player.getX() <= x + width) {
-			// falling down, therefore landing on the floor
-			if (player.getVelY() > 0) {
-				if (player.getY() + player.getHeight() > y && player.getY() + player.getHeight() < y + height) {
-					player.setGrounded(true);
-					player.setVelY(0);
-					player.setY(y - player.getHeight());
-				}
-			}
-		} else {
-			player.setGrounded(false);
-		}
+	public Rectangle getCollisionBox() {
+		return new Rectangle((int) x, (int) y, width, height);
 	}
 	/*
 	 * else { if (player.getY() < y + height && player.getY() > y) { player.setY(y +

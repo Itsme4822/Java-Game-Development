@@ -4,16 +4,16 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ca.jam.gameobject.Floor;
+import ca.jam.gameobject.ObjectHandler;
 import ca.jam.gameobject.Player;
 import ca.jam.main.Game;
+import ca.jam.main.KeyHandler;
 
 public class Level3 extends GameState{
 	
 	private Player player;
 	private BufferedImage background;
-	private Floor floor;
-	private Floor floor2;
-	private Floor floor3;
+	private ObjectHandler collisions;
 	
 	public Level3(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -24,32 +24,46 @@ public class Level3 extends GameState{
 	@Override
 	public void init() {
 		background = game.IMAGELOADER.loadImage("/Backgrounds/Glacier.png");
-		floor = new Floor(80,475,190,25,player);
-		floor2 = new Floor(360, 465, 340, 25, player);
-		floor3 = new Floor(790, 470, 150, 25, player);
-		// TODO Auto-generated method stub
-		
+		collisions = new ObjectHandler();
+		player = new Player(100, 100, collisions);
+		collisions.addObject(new Floor(80,475,190,25,player));
+		collisions.addObject(new Floor(360, 465, 340, 25, player));
+		collisions.addObject(new Floor(790, 470, 150, 25, player));
 	}
 
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
-		
+		player.tick();
+		collisions.tick();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		g.drawImage(background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-		floor.render(g);
-		floor2.render(g);
-		floor3.render(g);
+		collisions.render(g);
+		player.render(g);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyInput() {
-		// TODO Auto-generated method stub
+		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
+			player.setVelX(-6);
+		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
+			player.setVelX(6);
+		} else {
+			player.setVelX(0);
+		}
+		
+		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
+			player.setVelY(-8);
+			player.setGrounded(false);
+		}
+		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
+			player.setVelY(5);
+		}
 		
 	}
 

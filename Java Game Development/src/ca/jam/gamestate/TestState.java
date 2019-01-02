@@ -15,6 +15,7 @@ public class TestState extends GameState {
 	private Floor floor;
 	private Floor floor2;
 	private Floor floor3;
+	private ObjectHandler collisions;
 
 	public TestState(Game game, GameStateManager gsm) {
 		super(game, gsm);
@@ -25,10 +26,14 @@ public class TestState extends GameState {
 		/*
 		 * Define variables and objects here
 		 */
-		player = new Player(100, 100);
+		collisions = new ObjectHandler();
+		player = new Player(100, 100, collisions);
 		floor = new Floor(155, 450, 700, 25, player);
 		floor2 = new Floor(315, 350, 350, 15, player);
 		floor3 = new Floor(425, 250, 125, 5, player);
+		collisions.addObject(floor);
+		collisions.addObject(floor2);
+		collisions.addObject(floor3);
 	}
 	//hi
 
@@ -39,9 +44,7 @@ public class TestState extends GameState {
 		 * this function is run. There are 60 ticks per second.
 		 */
 		player.tick();
-		floor.tick();
-		floor2.tick();
-		floor3.tick();
+		collisions.tick();
 	}
 
 	@Override
@@ -54,9 +57,7 @@ public class TestState extends GameState {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		player.render(g);
-		floor.render(g);
-		floor2.render(g);
-		floor3.render(g);
+		collisions.render(g);
 	}
 
 	@Override

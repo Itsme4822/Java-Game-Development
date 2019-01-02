@@ -10,5 +10,7 @@ public enum ObjectId {
 	 * 		...
 	 * 		enemy();
 	 */
-	testObject();
+	testObject(),
+	player(),
+	floor();
 }

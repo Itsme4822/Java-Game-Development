@@ -24,7 +24,7 @@ public class GameStateManager {
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new GameState[NUMGAMESTATES];
-		currentState = LEVEL2;
+		currentState = LEVEL3;
 		setState(currentState);
 	}
 	
