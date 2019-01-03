@@ -7,7 +7,7 @@ import ca.jam.gameobject.*;
 import ca.jam.main.Game;
 import ca.jam.main.KeyHandler;
 
-public class TestState extends GameState {
+public class Level1 extends GameState {
 	/*
 	 * Declare variables and objects here.
 	 */
@@ -17,7 +17,7 @@ public class TestState extends GameState {
 	private Floor floor3;
 	private ObjectHandler collisions;
 
-	public TestState(Game game, GameStateManager gsm) {
+	public Level1(Game game, GameStateManager gsm) {
 		super(game, gsm);
 	}
 
@@ -27,7 +27,7 @@ public class TestState extends GameState {
 		 * Define variables and objects here
 		 */
 		collisions = new ObjectHandler();
-		player = new Player(100, 100, collisions);
+		player = new Player(200, 100, collisions);
 		floor = new Floor(155, 450, 700, 25, player);
 		floor2 = new Floor(315, 350, 350, 15, player);
 		floor3 = new Floor(425, 250, 125, 5, player);

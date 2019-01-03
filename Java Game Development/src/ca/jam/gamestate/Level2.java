@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import ca.jam.gameobject.Floor;
+import ca.jam.gameobject.ObjectHandler;
 import ca.jam.gameobject.Player;
 import ca.jam.main.Game;
 import ca.jam.main.KeyHandler;
@@ -11,10 +12,7 @@ import ca.jam.main.KeyHandler;
 public class Level2 extends GameState{
 
 	private Player player;
-	private Floor floor;
-	private Floor floor2;
-	private Floor floor3;
-	private Floor floor4;
+	private ObjectHandler collisions;
 	private BufferedImage background;
 	
 	public Level2(Game game, GameStateManager gsm) {
@@ -25,10 +23,11 @@ public class Level2 extends GameState{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		player = new Player(100, 100);
-		floor = new Floor(225, 350, 550, 45, player);
-		floor2 = new Floor(145, 190, 150, 15, player);
-		floor3 = new Floor(750, 270, 100, 15, player);
+		collisions = new ObjectHandler();
+		player = new Player(200, 100, collisions);
+		collisions.addObject(new Floor(225, 350, 550, 45, player));
+		collisions.addObject(new Floor(145, 190, 150, 15, player));
+		collisions.addObject(new Floor(750, 270, 100, 15, player));
 		background = Game.IMAGELOADER.loadImage("/Backgrounds/Back1.png");
 	}
 
@@ -36,9 +35,7 @@ public class Level2 extends GameState{
 	public void tick() {
 		// TODO Auto-generated method stub
 		player.tick();
-		floor.tick();
-		floor2.tick();
-		floor3.tick();
+		collisions.tick();
 	}
 
 	@Override
@@ -46,9 +43,7 @@ public class Level2 extends GameState{
 		// TODO Auto-generated method stub
 		g.drawImage(background, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		player.render(g);
-		floor.render(g);
-		floor2.render(g);
-		floor3.render(g);
+		collisions.render(g);
 	}
 	//comment
 	@Override

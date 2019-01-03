@@ -6,37 +6,45 @@ import ca.jam.main.Game;
 
 public class GameStateManager {
 
-	//All the classes that the gamestates may need
+	// All the classes that the gamestates may need
 	private Game game;
-	
+
 	private GameState[] gameStates; // List that holds all the gamestates in the game
 	private int currentState; // ID of the current gamestate
-	
-	// How many gamestates there are in the game. Must change when you add new states.
-	public static final int NUMGAMESTATES = 4; 
-	
-	//GAMESTATE IDs. These IDs must be unique.
-	public final int TESTSTATE = 0;
-	public final int LEVEL2 = 1;
-	public final int LEVEL3 = 2;
-	public final int LEVEL4 = 3;
-	//hello
+
+	// How many gamestates there are in the game. Must change when you add new
+	// states.
+	public static final int NUMGAMESTATES = 6;
+
+	// GAMESTATE IDs. These IDs must be unique.
+	public final int MENUSTATE = 0;
+	public final int LEVELSELECT = 1;
+	public final int LEVEL1 = 2;
+	public final int LEVEL2 = 3;
+	public final int LEVEL3 = 4;
+	public final int LEVEL4 = 5;
+
+	// hello
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new GameState[NUMGAMESTATES];
-		currentState = LEVEL3;
+		currentState = MENUSTATE;
 		setState(currentState);
 	}
-	
+
 	private void loadState(int state) { // Loads all the states in the game
-		if (state == TESTSTATE) {
-			gameStates[state] = new TestState(game, this);
-		}else if(state == LEVEL2){
+		if (state == MENUSTATE) {
+			gameStates[state] = new MenuState(game, this);
+		} else if (state == LEVELSELECT) {
+			gameStates[state] = new LevelSelectState(game, this);
+		} else if (state == LEVEL1) {
+			gameStates[state] = new Level1(game, this);
+		} else if (state == LEVEL2) {
 			gameStates[state] = new Level2(game, this);
-		}else if(state == LEVEL3) {
-			gameStates[state] = new Level3(game,this);
-		}else if(state == LEVEL4) {
-			gameStates[state] = new Level4(game,this);
+		} else if (state == LEVEL3) {
+			gameStates[state] = new Level3(game, this);
+		} else if (state == LEVEL4) {
+			gameStates[state] = new Level4(game, this);
 		}
 	}
 
@@ -60,7 +68,7 @@ public class GameStateManager {
 		try {
 			gameStates[currentState].render(g);
 		} catch (Exception e) {
-			
+
 		}
 	}
 }
