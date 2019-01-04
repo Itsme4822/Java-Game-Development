@@ -30,7 +30,6 @@ public class Player extends GameObject {
 
 		velY += gravity;
 		collisionNoBoxes();
-
 	}
 
 	@Override
@@ -72,16 +71,29 @@ public class Player extends GameObject {
 			GameObject tempObject = objects.objects.get(i);
 			if (tempObject.getId() == ObjectId.floor) {
 				Floor floor = (Floor) tempObject;
-
+				
+				if (getBoundsLeft().intersects(floor.getCollisionBox())) {
+					x = floor.getX() + floor.getWidth();
+				}
+				
+				if (getBoundsRight().intersects(floor.getCollisionBox())) {
+					x = floor.getX() - width;
+				}
+				
+				//Collision with top and bottom of floors
 				if (x + width > floor.getX() && x < floor.getX() + floor.getWidth()) {
 
+					if (y < floor.getY() + floor.getHeight() && y > floor.getY()) {
+						y = floor.getY() + floor.getHeight() + 1;
+						velY = 2;
+					}
+					
 					if (y + height > floor.getY() && y + height < floor.getY() + floor.getHeight()) {
 						y = floor.getY() - height + 1;
 						velY = 0;
 						isGrounded = true;
 					}
 				}
-
 			}
 		}
 	}
