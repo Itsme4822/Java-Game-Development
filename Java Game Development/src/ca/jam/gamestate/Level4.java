@@ -24,7 +24,7 @@ public class Level4 extends GameState {
 	public void init() {
 		background = game.IMAGELOADER.loadImage("/Backgrounds/mario.jpg");
 		collisions = new ObjectHandler();
-		player = new Player(100, 100, collisions);
+		player = new Player(100, 100, Game.username, collisions);
 		collisions.addObject(new Floor(265, 0, 155, 215, player));
 		collisions.addObject(new Floor(0, 278, 177, 45, player));
 		collisions.addObject(new Floor(177, 324, 320, 47, player));
@@ -54,21 +54,7 @@ public class Level4 extends GameState {
 	@Override
 	public void keyInput() {
 		// TODO Auto-generated method stub
-		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
-			player.setVelX(-6);
-		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
-			player.setVelX(6);
-		} else {
-			player.setVelX(0);
-		}
-		
-		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
-			player.setVelY(-8);
-			player.setGrounded(false);
-		}
-		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
-			player.setVelY(5);
-		}
+		player.keyInput();
 	}
 
 }

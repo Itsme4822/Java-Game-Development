@@ -4,8 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
+
 import ca.jam.main.Game;
 import ca.jam.main.KeyHandler;
+import ca.jam.network.GameClient;
+import ca.jam.network.GameServer;
 
 public class LevelSelectState extends GameState {
 
@@ -16,7 +20,11 @@ public class LevelSelectState extends GameState {
 	private boolean cursorMove = true;
 	private int CURSOR_RESET = 10;
 	private int cursorTimer = 0;
-	
+
+	// Server
+	private GameClient client;
+	private GameServer server;
+
 	public LevelSelectState(Game game, GameStateManager gsm) {
 		super(game, gsm);
 		// TODO Auto-generated constructor stub
@@ -28,8 +36,8 @@ public class LevelSelectState extends GameState {
 		border = Game.IMAGELOADER.loadImage("/levelselect/border.png");
 		level2 = Game.IMAGELOADER.loadImage("/Backgrounds/Back1.png");
 		level3 = Game.IMAGELOADER.loadImage("/Backgrounds/Glacier.png");
-		level4 = Game.IMAGELOADER.loadImage("/Backgrounds/mario.jpg");	
-		
+		level4 = Game.IMAGELOADER.loadImage("/Backgrounds/mario.jpg");
+
 	}
 
 	@Override
@@ -59,7 +67,7 @@ public class LevelSelectState extends GameState {
 		g.drawImage(border, 720, 150, null);
 		g.setColor(Color.RED);
 		g.fillRect(135 + (200 * cursor), 300, 150, 10);
-		
+
 	}
 
 	@Override
@@ -81,8 +89,15 @@ public class LevelSelectState extends GameState {
 			}
 			cursorMove = false;
 		}
-		
+
 		if (KeyHandler.isPressed(KeyHandler.ENTER) && cursorMove) {
+			if (JOptionPane.showConfirmDialog(null, "Do you want to run the server?") == 0) {
+				server = new GameServer(game);
+				server.start();
+			}
+			client = new GameClient(game, "localhost");
+			client.start();
+			client.sendData("ping".getBytes());
 			if (cursor == 0) {
 				gsm.setState(gsm.LEVEL1);
 			} else if (cursor == 1) {

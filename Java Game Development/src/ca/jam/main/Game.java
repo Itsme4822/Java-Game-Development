@@ -11,6 +11,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
+
+import ca.jam.gamestate.GameState;
 import ca.jam.gamestate.GameStateManager;
 import ca.jam.gfx.BufferedImageLoader;
 
@@ -27,11 +30,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static final int HEIGHT = WIDTH / 16 * 9;
 	public static final String TITLE = "Java Game";
 	public static int FPS;
-
-	private BufferedImage image  = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 	
+
+	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
 	// Variables for the game
 	public static final BufferedImageLoader IMAGELOADER = new BufferedImageLoader();
+	public static String username;
+	public static GameState currentState;
 	private boolean running = false;
 	private Thread game;
 	private GameStateManager gsm;
@@ -50,8 +56,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public synchronized void start() {
 		if (running)
 			return;
-		game = new Thread(this);
 		running = true;
+		game = new Thread(this);
+		username = JOptionPane.showInputDialog("Please enter a username: ");
+		
 		game.start();
 	}
 
@@ -91,7 +99,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				FPS = frames;
-				System.out.println("FPS: " + frames + " TICKS: " + updates);
+				//System.out.println("FPS: " + frames + " TICKS: " + updates);
+				
 				frames = 0;
 				updates = 0;
 			}
@@ -121,7 +130,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		g.dispose();
 		bs.show();
 	}
-	
+
 	public static void main(String args[]) {
 		Game game = new Game();
 		System.out.println("WIDTH: " + game.getWidth() + " HEIGHT: " + game.getHeight());
@@ -132,61 +141,61 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -25,7 +25,7 @@ public class Level3 extends GameState{
 	public void init() {
 		background = game.IMAGELOADER.loadImage("/Backgrounds/Glacier.png");
 		collisions = new ObjectHandler();
-		player = new Player(100, 100, collisions);
+		player = new Player(100, 100, Game.username, collisions);
 		collisions.addObject(new Floor(80,475,190,25,player));
 		collisions.addObject(new Floor(360, 465, 340, 25, player));
 		collisions.addObject(new Floor(790, 470, 150, 25, player));
@@ -49,21 +49,7 @@ public class Level3 extends GameState{
 
 	@Override
 	public void keyInput() {
-		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
-			player.setVelX(-6);
-		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
-			player.setVelX(6);
-		} else {
-			player.setVelX(0);
-		}
-		
-		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
-			player.setVelY(-8);
-			player.setGrounded(false);
-		}
-		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
-			player.setVelY(5);
-		}
+		player.keyInput();
 		
 	}
 

@@ -56,6 +56,7 @@ public class GameStateManager {
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
+		Game.currentState = gameStates[currentState];
 		gameStates[currentState].init();
 	}
 

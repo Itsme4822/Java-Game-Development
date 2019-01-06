@@ -27,7 +27,7 @@ public class Level1 extends GameState {
 		 * Define variables and objects here
 		 */
 		collisions = new ObjectHandler();
-		player = new Player(200, 100, collisions);
+		player = new Player(200, 100, Game.username, collisions);
 		floor = new Floor(155, 450, 700, 25, player);
 		floor2 = new Floor(315, 350, 350, 15, player);
 		floor3 = new Floor(425, 250, 125, 5, player);
@@ -66,21 +66,7 @@ public class Level1 extends GameState {
 		 * This is where we handle keyboard input. Example of how to use this: 
 		 * if (KeyHandler.isPressed(key)) { ... }
 		 */
-		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
-			player.setVelX(-6);
-		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
-			player.setVelX(6);
-		} else {
-			player.setVelX(0);
-		}
-		
-		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
-			player.setVelY(-8);
-			player.setGrounded(false);
-		}
-		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
-			player.setVelY(5);
-		}
+		player.keyInput();
 	}
 
 }

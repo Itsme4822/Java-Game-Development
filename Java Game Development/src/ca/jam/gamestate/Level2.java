@@ -24,7 +24,7 @@ public class Level2 extends GameState{
 	public void init() {
 		// TODO Auto-generated method stub
 		collisions = new ObjectHandler();
-		player = new Player(200, 100, collisions);
+		player = new Player(200, 100, Game.username, collisions);
 		collisions.addObject(new Floor(225, 350, 550, 45, player));
 		collisions.addObject(new Floor(145, 190, 150, 15, player));
 		collisions.addObject(new Floor(750, 270, 100, 15, player));
@@ -52,21 +52,7 @@ public class Level2 extends GameState{
 		 * This is where we handle keyboard input. Example of how to use this: 
 		 * if (KeyHandler.isPressed(key)) { ... }
 		 */
-		if (KeyHandler.isPressed(KeyHandler.LEFT)) {
-			player.setVelX(-6);
-		} else if (KeyHandler.isPressed(KeyHandler.RIGHT)) {
-			player.setVelX(6);
-		} else {
-			player.setVelX(0);
-		}
-		
-		if (KeyHandler.isPressed(KeyHandler.UP) && player.isGrounded()) {
-			player.setVelY(-8);
-			player.setGrounded(false);
-		}
-		if (KeyHandler.isPressed(KeyHandler.DOWN)) {
-			player.setVelY(5);
-		}
+		player.keyInput();
 	}
 
 }
